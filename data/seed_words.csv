@@ -1,0 +1,5 @@
+headword,pos,definition,example,difficulty,frequency,domain,tags
+serene,adj,"calm, peaceful, and untroubled",a serene lake at dawn,0.3,high,nature,soothing;neutral
+cogent,adj,"clear, logical, and convincing",a cogent argument swayed the jury,0.6,medium,rhetoric,precise;terse
+ebullient,adj,cheerful and full of energy,an ebullient crowd filled the square,0.7,low,emotion,lively;energetic
+ruminate,verb,to think deeply about something,they ruminated on the decision overnight,0.5,medium,philosophy,contemplative
