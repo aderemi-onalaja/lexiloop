@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  title: Lexiloop API
+  version: 0.1.0
+servers:
+  - url: https://api.lexiloop.example
+paths:
+  /auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, format: password }
+      responses:
+        '200':
+          description: OK
+  /words/today:
+    get:
+      summary: Get today's word by mood
+      parameters:
+        - in: query
+          name: mood
+          schema: { type: string, enum: [calm,focused,ambitious,playful,reflective] }
+      responses:
+        '200':
+          description: Word payload
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  word: { type: string }
+                  definition: { type: string }
+                  example: { type: string }
+                  meta:
+                    type: object
+                    properties:
+                      difficulty: { type: number }
+                      domain: { type: string }
+  /cards/render:
+    post:
+      summary: Render a definition card
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                word: { type: string }
+                definition: { type: string }
+                example: { type: string }
+                size: { type: string, enum: [square,story], default: square }
+      responses:
+        '200':
+          description: Rendered card URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url: { type: string, format: uri }
+  /me/score:
+    get:
+      summary: Get my streak and XP
+      responses:
+        '200':
+          description: Scores
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  streak: { type: integer }
+                  xp: { type: integer }
+                  history:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date: { type: string, format: date }
+                        xp: { type: integer }
